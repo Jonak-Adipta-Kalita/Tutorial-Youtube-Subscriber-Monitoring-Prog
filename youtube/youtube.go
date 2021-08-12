@@ -3,25 +3,24 @@ package youtube
 import (
 	"net/http"
 	"fmt"
-	"os"
 	"io/ioutil"
 	"encoding/json"
 )
 
 type Response struct {
-	Kind string `json:*kind*`
-	Items []Item `json:*items*`
+	Kind string `json:"kind"`
+	Items []Item `json:"items"`
 }
 
 type Item struct {
-	Kind string `json:*kind*`
-	Id string `json:*id*`
-	Stats Stats `json:*statistics*`
+	Kind string `json:"kind"`
+	Id string `json:"id"`
+	Stats Stats `json:"statistics"`
 }
 
 type Stats struct {
-	Views string `json:*viewCount*`
-	Subscribers string `json:*subscriberCount*`
+	Views string `json:"viewCount"`
+	Subscribers string `json:"subscriberCount"`
 }
 
 func GetSubscribers() (Item, error) {
@@ -32,8 +31,8 @@ func GetSubscribers() (Item, error) {
 	}
 	
 	q := req.URL.Query()
-	q.Add("key", os.Getenv("YOUTUBE_KEY"))
-	q.Add("id", os.Getenv("CHANNEL_ID"))
+	q.Add("key", "AIzaSyD0CMQsqYCFaG_J2VV7eK5GezWwt74d9rs")
+	q.Add("id", "UC6IPfVhkqfcfBZCko6Q9mnQ")
 	q.Add("part", "statistics")
 	req.URL.RawQuery = q.Encode()
 	
