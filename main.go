@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"log"
+	"github.com/Jonak-Adipta-Kalita/JAK-Youtube-Subscriber-Monitoring-Prog/youtube"
 )
 
 func homePage(w http.ResponseWriter, r * http.Request) {
@@ -17,5 +18,11 @@ func setupRoutes() {
 
 func main() {
 	fmt.Println("Monitoring Your Youtube Subscribers")
+	item, err := youtube.GetSubscribers()
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Printf("%+v\n", item)
+	
 	setupRoutes()
 }
